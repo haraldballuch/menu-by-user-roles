@@ -107,7 +107,6 @@ function menu_by_user_roles_filter_menu_items($items)
 	foreach ($items as $item) {
 		$item_id        = $item->ID;
 		$selected_roles = get_post_meta($item_id, '_wp_menu_item_user_roles', true);
-
 		if (
 			! is_array($selected_roles) ||
 			(in_array('all', $selected_roles, true)) ||
@@ -174,7 +173,7 @@ add_action('enqueue_block_editor_assets', 'menu_by_user_roles_enqueue_editor_ass
 function menu_by_user_roles_filter_navigation_link_render($block_content, $block)
 {
 	// Check if the block is a Navigation Link and has the custom attribute
-	if ($block['blockName'] === 'core/navigation-link' && isset($block['attrs']['userRoleVisibility'])) {
+	if (($block['blockName'] === 'core/navigation-link' || $block['blockName'] === 'core/navigation-submenu') && isset($block['attrs']['userRoleVisibility'])) {
 		$selected_roles = $block['attrs']['userRoleVisibility'];
 
 		// If no roles are selected or "All" is selected, show the menu item to everyone

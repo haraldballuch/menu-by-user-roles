@@ -13,7 +13,7 @@
    * @returns {Object} The modified block settings with the new attribute.
    */
   function mburAddUserRoleVisibilityAttributes(settings, name) {
-    if (name !== "core/navigation-link") {
+    if (name !== "core/navigation-link" && name !== "core/navigation-submenu") {
       return settings;
     }
 
@@ -41,7 +41,7 @@
    */
   const mburWithInspectorControls = createHigherOrderComponent((BlockEdit) => {
     return function (props) {
-      if (props.name !== "core/navigation-link") {
+      if (props.name !== "core/navigation-link" && props.name !== "core/navigation-submenu") {
         return wp.element.createElement(BlockEdit, props);
       }
 
